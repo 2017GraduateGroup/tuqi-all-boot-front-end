@@ -47,9 +47,31 @@ var Schedule = function () {
 			},
 			bindData: function(data) {
 				for(var item of data) {
-					// console.log(data.programmeTime);
-					// console.log(`$(.fc-day[data-date=${item.programmeTime}])`);
-					console.log($(".fc-day[data-data=2017-06-01]"));
+					console.log($(`.fc-day[data-date=${item.programmeTime}]`))
+					switch(item.programTypeId) {
+						case 1:
+							item.programTypeId = '普通';
+							break;
+						case 2:
+							item.programTypeId = '出行';
+							break;
+						case 3:
+							item.programTypeId = '会议';
+							break;
+						case 4:
+							item.programTypeId = '约会';
+							break;
+						case 5:
+							item.programTypeId = '纪念日';
+							break;
+						case 6:
+							item.programTypeId = '其他';
+							break;
+						default: 
+							item.programTypeId = 'error';
+					}
+					$(`.fc-day[data-date=${item.programmeTime}]`).find('.fc-day-content').css({'border':'1px solid orange'}).css({'color':'red', 'cursor':'pointer'});
+					$(`.fc-day[data-date=${item.programmeTime}]`).find('.fc-day-content').append(`<p>${item.programTypeId}</p>`);
 				}
 			}
 		}
