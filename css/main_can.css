@@ -1,0 +1,26 @@
+.th-hover {
+	background-color: #EBEBEB;
+}
+.add-item {
+	display: block;
+	cursor: pointer;
+	position: absolute;
+	color: blue;
+	font-weight: 700;
+	left: 2px;
+	top: 1px;
+}
+.hidden {
+	display: none;
+}
+.fc-day>div {
+	position: relative;
+}
+.row-fluid span.required {
+	font-size: .9em;
+    margin-left: 4px;
+    color: #E02222;
+}
+#scheduleText {
+	height: 120px !important;
+}

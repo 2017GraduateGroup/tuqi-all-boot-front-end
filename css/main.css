@@ -1,0 +1,55 @@
+/*remove bootstrap style to radio*/
+.controls .radio input[type="radio"] {
+	margin-left: 0px;
+	margin-right: 5px;
+}
+
+h4 .required {
+    font-size: .9em;
+    margin-left: 4px;
+    color: #E02222;
+}
+
+.container-fluid {
+    position: relative;
+}
+
+#UPAddUserForm {
+    position: absolute;
+    left: 0;
+    right: 0; 
+    margin: auto;
+}
+
+@media screen and (min-width: 980px) {
+    #UPAddUserForm {
+        width: 63%;
+    }
+}
+
+/*AP.html css*/
+.PortInforDel {
+    margin-left: 20%;
+}
+
+/*
+.search-group {
+    float: right;
+}
+
+.search-group label {
+    line-height: 34px;
+    vertical-align: middle;
+    margin-bottom: 0 !important;
+    display: inline-block;
+    padding-right: 3px;
+}
+
+.search-group input {
+    height: 24px;
+    margin-bottom: 0 !important;
+}*/
+
+#jnlContent {
+	height: 60px !important;
+}
