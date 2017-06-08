@@ -1,0 +1,35 @@
+.container-fluid {
+	position: relative;
+}
+#notice {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	padding: 5px;
+	background-color: rgba(0,0,0,0.6);
+	width: 300px;
+}
+#notice img {
+	border: 0px;
+	margin-top: -5px;
+	padding: 0px;
+	width: 20px;
+	height: 20px;
+}
+#notice .notice-title {
+	color: #D81E06;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: 5px;
+	line-height: 20px;
+}
+#notice .notice-content {
+	padding: 3px 20px;
+}
+#notice .notice-content .jour-type {
+	color: orange;
+}
+#notice .notice-content .jour-detial {
+	color: white;
+}

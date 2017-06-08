@@ -201,6 +201,14 @@
 
 						</li>
 
+						<li >
+
+							<a href="userlist_managment.html">
+
+							用户管理</a>
+
+						</li>
+
 
 					</ul>
 
@@ -310,6 +318,29 @@
 				                        <button data-toggle="modal" data-target="#UPAddUserForm" id="addNewUser" class="btn green">
 				                            增加日程 <i class="icon-plus"></i>
 				                        </button>
+				                        <div class="row-fluid">
+					                    	<div class="span12">
+					                    		<div class="span6">
+					                    			<span>关键词：</span>
+					                    			<input type="text" id="key">
+					                    		</div>
+					                    		<div class="span6">
+					                    			<span>日程发生时间：</span>
+					                    			<input type="text" id="occTime">
+					                    		</div>
+					                    		<div class="span6">
+					                    			<span>日程类型：</span>
+					                    			<select name="scheduleType" id="shedualType" class="m-wrap span12" >
+								                    	<option value="1">普通</option>
+								                    	<option value="2">出行</option>
+								                    	<option value="3">会议</option>
+								                    	<option value="4">约会</option>
+								                    	<option value="5">纪念日</option>
+								                    	<option value="6">其他</option>
+								                    </select>
+					                    		</div>
+				                    		</div>
+				                    	</div>
 				                    </div>
 				                </div>
 				                <table class="table table-striped table-hover table-bordered" id="userManagment">
@@ -422,21 +453,39 @@
 				    </div>
 				</div>
 
-										</div>
-
-										<!-- END EXAMPLE TABLE PORTLET-->
-
-					</div>
-
-				</div>
-
-				<!-- END PAGE CONTENT -->
-
 			</div>
 
-			<!-- END PAGE CONTAINER-->
+<!-- END EXAMPLE TABLE PORTLET-->
 
-		<!-- END PAGE -->
+		</div>
+
+	</div>
+
+	<!-- END PAGE CONTENT -->
+
+</div>
+
+<div id="confirmModal" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-body">
+
+        <h4>确认删除当前条目吗？</h4>
+
+    </div>
+
+    <div class="modal-footer">
+
+        <button type="button" data-dismiss="modal" class="btn cancel">取消</button>
+
+        <button type="button" data-dismiss="modal" class="btn green confirm">确认</button>
+
+    </div>
+
+</div>
+
+	<!-- END PAGE CONTAINER-->
+
+<!-- END PAGE -->
 
 	<!-- END CONTAINER -->
 
@@ -446,7 +495,7 @@
 
 		<div class="footer-inner">
 
-			2013 &copy; Metronic by keenthemes.
+			2017 &copy; Metronic by keenthemes.
 
 		</div>
 

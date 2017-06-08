@@ -1,5 +1,6 @@
 var validFlag = true;
 var para = {};
+var currentDelId = '';
 var sessionUserId = sessionStorage.getItem('userId');
 var userManagment = function () {
     var oTable = null;
@@ -41,7 +42,7 @@ var userManagment = function () {
                      {
                          "aTargets": [2],
                          "mRender": function (data, type, full) { // 返回自定义内容
-                             return '<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#UPAddUserForm"><i class="icon icon-pencil"></i>编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#UPAddUserForm"><i class="icon icon-zoom-in"></i>查看</a>';
+                             return '<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#UPAddUserForm"><i class="icon icon-pencil"></i>编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#UPAddUserForm"><i class="icon icon-zoom-in"></i>查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#confirmModal"><i class="icon icon-trash"></i>删除</a>';
                          }
                      },
                      // {
@@ -184,6 +185,30 @@ $(document).ready(function () {
         $("#jnlMark").val("");
         $("#jnlContent").val("");
         $("#UPFormTitle").html("增加新的日志");
+    });
+
+    //get current click programid
+    $("#userManagment").on("click", ".userManagmentEdit", function (e) {
+        var rData = userManagment.oTable().fnGetData($(e.target).parents("tr")[0]);
+        console.log(rData)
+        currentDelId = rData.recordid;
+    })
+
+    //confirm click btn
+    $("#confirmModal").on('click', '.confirm', function() {
+        $.ajax({
+            url: 'http://localhost:8088/dairecord/deleteDailyRecord.do',
+            type: 'POST',
+            data: { "dailyRecordNum": currentDelId },
+            datatype: 'json',
+            success: function(returnData) {
+                console.log(returnData);
+                location.reload();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
     });
 
 

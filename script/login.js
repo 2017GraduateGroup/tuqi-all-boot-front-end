@@ -11,23 +11,34 @@ $(document).ready(function() {
 		  	var lUserName = $('#username').val(),
 		  		lPassword = $('#password').val();
 		  	var para = { 'usernameInput': lUserName, 'passwdInput': lPassword };
-		  	$.ajax({
-		  		url: 'http://localhost:8088/user/userLogin',
-		  		data: para,
-		  		type: "POST",
-		  		datetype: "json",
-		  		success: function(returnData) {
-		  			console.log(returnData);
-		  			if(returnData.code == 1) {
-		  				sessionStorage.setItem('userId', returnData.data);
-		  				window.location = 'index.html'
-		  			} else if (returnData == 0) {
+		  	if (para.usernameInput == '' || para.passwdInput == '') {
+		  		$('.input-wrong').css('display','none');
+		  		$('.alert-error').css('display','block');
+		  	} else {
+			  	$.ajax({
+			  		url: 'http://localhost:8088/user/userLogin',
+			  		data: para,
+			  		type: "POST",
+			  		datetype: "json",
+			  		success: function(returnData) {
+			  			console.log(returnData);
+			  			if(returnData.code == 1) {
+			  				sessionStorage.setItem('userId', returnData.data);
+			  				window.location = 'index.html'
+			  			} else if (returnData.code == 0) {
+			  				$('.alert-error').css('display','none');
+			  				$('.input-wrong').css('display','block');
+			  			}
+			  		},
+			  		error: function(errorData) {
+			  			console.log(errorData);
+			  		}
+			  	})
+			  }
+		  });
 
-		  			}
-		  		},
-		  		error: function(errorData) {
-		  			console.log(errorData);
-		  		}
-		  	})
-		  })
+		$('button.close-button').click(function() {
+	        console.log(1);
+	        $(this).parent().css('display','none');
+	    });
 })

@@ -1,5 +1,6 @@
 var validFlag = true;
 var para = {};
+var currentDelId = '';
 var sessionUserId = sessionStorage.getItem('userId');
 var userManagment = function () {
     var oTable = null;
@@ -28,8 +29,8 @@ var userManagment = function () {
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ records per page",
                     "oPaginate": {
-                        "sPrevious": "Prev",
-                        "sNext": "Next"
+                        "sPrevious": "前一页",
+                        "sNext": "下一页"
                     }
                 },
                 "aoColumns": [
@@ -42,13 +43,12 @@ var userManagment = function () {
                      {
                          "aTargets": [3],
                          "mRender": function (data, type, full) { // 返回自定义内容
-                             return '<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#UPAddUserForm"><i class="icon icon-pencil"></i>edit</a>';
+                             return '<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#UPAddUserForm"><i class="icon icon-pencil"></i>编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="userManagmentEdit" data-id="' + data + '"  data-toggle="modal" data-target="#confirmModal"><i class="icon icon-trash"></i>删除</a>';
                          }
                      },
                      {
                          "aTargets": [1],
                          "mRender": function (data) {
-                             console.log(data)
                              return function () {
                                  if (data.length >= 10) {
                                      return data.substring(0,10) + '...';
@@ -151,7 +151,7 @@ $(document).ready(function () {
     });
 
 
-
+    //click add/update confirm btn 
     $("#addUPButton").click(function (e) {
         if ($("#ID").val()) {
             userManagment.CheckFromValidation(validFlag, $("#ID").val());
@@ -177,6 +177,7 @@ $(document).ready(function () {
 
     });
 
+    // add new or update 
     $("#addNewUser").on("click", function () {
         $('#ID').parent().parent().css('display', 'none');
         $('.alert-error')[0].style.display = 'none';
@@ -186,6 +187,29 @@ $(document).ready(function () {
         $("#sheType").val("");
         $("#sheContent").val("");
         $("#UPFormTitle").html("增加新的日程");
+    });
+
+    //get current click programid
+    $("#userManagment").on("click", ".userManagmentEdit", function (e) {
+        var rData = userManagment.oTable().fnGetData($(e.target).parents("tr")[0]);
+        currentDelId = rData.programmeid;
+    })
+
+    //confirm click btn
+    $("#confirmModal").on('click', '.confirm', function() {
+        $.ajax({
+            url: 'http://localhost:8088/programme/deleteProgramme.do',
+            type: 'POST',
+            data: { "programmeId": currentDelId },
+            datatype: 'json',
+            success: function(returnData) {
+                console.log(returnData);
+                location.reload();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
     });
 
 
