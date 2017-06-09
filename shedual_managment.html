@@ -201,7 +201,7 @@
 
 						</li>
 
-						<li >
+						<li class="userListBar hide">
 
 							<a href="userlist_managment.html">
 
@@ -313,33 +313,52 @@
 				                </div>
 				            </div>
 				            <div class="portlet-body">
-				                <div class="clearfix">
+				                <div class="clearfix"></div>
 				                    <div class="btn-group">
 				                        <button data-toggle="modal" data-target="#UPAddUserForm" id="addNewUser" class="btn green">
 				                            增加日程 <i class="icon-plus"></i>
 				                        </button>
-				                        <div class="row-fluid">
-					                    	<div class="span12">
-					                    		<div class="span6">
-					                    			<span>关键词：</span>
-					                    			<input type="text" id="key">
+				                        <div class="search">
+					                        <div class="row-fluid">
+						                    	<!-- <div class="span12"> -->
+						                    		<div class="span6">
+						                    			<h4 class="search-title">关键词：</h4>
+						                    			<input type="text" id="key">
+						                    		</div>
+						                    		<div class="span6">
+						                    			<h4 class="search-title">发生时间：</h4>
+						                    			<input type="text" id="occTime">
+						                    		</div>
+					                    		<!-- </div> -->
+					                    	</div>
+					                    	<div class="row-fluid">
+					                    		<div class="span12">
+					                    			<div class="span6">
+						                    			<h4 class="search-title">日程类型：</h4>
+						                    			<select name="scheduleType" id="shedualType" class="m-wrap span9" >
+									                    	<option value="1">普通</option>
+									                    	<option value="2">出行</option>
+									                    	<option value="3">会议</option>
+									                    	<option value="4">约会</option>
+									                    	<option value="5">纪念日</option>
+									                    	<option value="6">其他</option>
+									                    </select>
+						                    		</div>
+						                    	</div>
+						                    	<div class="row-fluid">
+						                    		<div class="span6">
+						                    			<h4 class="search-title">起止时间：</h4>
+						                    			<input type="text" class="span6">
+						                    			<h4 class="search-line">-</h4>
+						                    			<input type="text" class="span6 end-time">
+						                    		</div>
+						                    		<div class="span6 search-button">
+						                    			<button id="search-btn" class="btn green">
+				                            			搜索 <i class="icon-search"></i>
+				                        				</button>
+						                    		</div>
 					                    		</div>
-					                    		<div class="span6">
-					                    			<span>日程发生时间：</span>
-					                    			<input type="text" id="occTime">
-					                    		</div>
-					                    		<div class="span6">
-					                    			<span>日程类型：</span>
-					                    			<select name="scheduleType" id="shedualType" class="m-wrap span12" >
-								                    	<option value="1">普通</option>
-								                    	<option value="2">出行</option>
-								                    	<option value="3">会议</option>
-								                    	<option value="4">约会</option>
-								                    	<option value="5">纪念日</option>
-								                    	<option value="6">其他</option>
-								                    </select>
-					                    		</div>
-				                    		</div>
+					                    	</div>
 				                    	</div>
 				                    </div>
 				                </div>
@@ -577,7 +596,18 @@
 
 	<script>
 
-		jQuery(document).ready(function() {       
+		jQuery(document).ready(function() {    
+			if (sessionStorage.getItem('userName')) {
+				var currentLoginUser = sessionStorage.getItem('userName');
+				var isAdmin = sessionStorage.getItem('isAdmin');
+				$('.dropdown .username').html(currentLoginUser);
+
+				if (isAdmin == 1) {
+					$('.userListBar').css('display','block');
+				} else {
+					$('.userListBar').css('display','none');
+				}
+			}
 
 		   App.init();
 

@@ -204,7 +204,7 @@
 
 						</li>
 
-						<li >
+						<li class="userListBar hide">
 
 							<a href="userlist_managment.html">
 
@@ -503,7 +503,19 @@
 
 	<script>
 
-		jQuery(document).ready(function() {       
+		jQuery(document).ready(function() {     
+
+			if (sessionStorage.getItem('userName')) {
+				var currentLoginUser = sessionStorage.getItem('userName');
+				var isAdmin = sessionStorage.getItem('isAdmin');
+				$('.dropdown .username').html(currentLoginUser);
+				if (isAdmin == 1) {
+					$('.userListBar').css('display','block');
+				} else {
+					$('.userListBar').css('display','none');
+				}
+			}
+  
 
 		   App.init();
 

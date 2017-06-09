@@ -20,7 +20,21 @@ h4 .required {
     right: 0; 
     margin: auto;
 }
-
+.search .search-title {
+    display: inline-block;
+    width: 100px;
+    letter-spacing: 2px;
+}
+.search .search-line {
+    display: inline-block;
+    padding: 0 2px;
+    margin-left: 0 !important;
+}
+.search .search-button {
+    margin-left: 200px;
+    width: 200px;
+    margin-top: 3px;
+}
 @media screen and (min-width: 980px) {
     #UPAddUserForm {
         width: 63%;

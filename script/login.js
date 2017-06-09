@@ -13,6 +13,7 @@ $(document).ready(function() {
 		  	var para = { 'usernameInput': lUserName, 'passwdInput': lPassword };
 		  	if (para.usernameInput == '' || para.passwdInput == '') {
 		  		$('.input-wrong').css('display','none');
+  				$('.not-exist').css('display', 'none');
 		  		$('.alert-error').css('display','block');
 		  	} else {
 			  	$.ajax({
@@ -23,11 +24,19 @@ $(document).ready(function() {
 			  		success: function(returnData) {
 			  			console.log(returnData);
 			  			if(returnData.code == 1) {
+			  				console.log(returnData);
+							sessionStorage.setItem('isAdmin',returnData.dataList[0].userType);
 			  				sessionStorage.setItem('userId', returnData.data);
-			  				window.location = 'index.html'
+			  				sessionStorage.setItem('userName', para.usernameInput);
+			  				window.location = 'index.html';
 			  			} else if (returnData.code == 0) {
 			  				$('.alert-error').css('display','none');
+			  				$('.not-exist').css('display', 'none');
 			  				$('.input-wrong').css('display','block');
+			  			} else if (returnData.code == 2) {
+			  				$('.alert-error').css('display','none');
+			  				$('.input-wrong').css('display','none');
+			  				$('.not-exist').css('display', 'block');
 			  			}
 			  		},
 			  		error: function(errorData) {
