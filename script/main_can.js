@@ -79,7 +79,14 @@ var Schedule = function () {
 
 $(document).ready(function() {
 	var currentUserId = window.sessionStorage.getItem('userId');
-	Schedule.init();
+	if (!currentUserId) {
+		window.scroll = false;
+		$('.noLoginMask').css('display', 'block');
+		setTimeout(function(){
+			window.location = 'login_soft.html';
+		},1000)
+	}
+	Schedule.init();	
 	Schedule.GetHandle(URL_SCHEDUAL_GET+ "?userId=" + currentUserId);
 	console.log("Ready");
 	console.log($('.fc-content'));
@@ -103,7 +110,7 @@ $(document).ready(function() {
 	})
 
 	$("#saveChanges").on("click", function() {
-		para = { "userId": 1, "content": $('#scheduleText').val(), "programmeTime": $('#scheduleTime').val(), "programmeType": $('#scheduleType').val() };
+		para = { "userId": currentUserId, "content": $('#scheduleText').val(), "programmeTime": $('#scheduleTime').val(), "programmeType": $('#scheduleType').val() };
 		Schedule.PostHandle(para, URL_SCHEDUAL_ADD);
 		$('#closeModal').trigger('click');
 	})

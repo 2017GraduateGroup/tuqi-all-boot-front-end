@@ -1,7 +1,7 @@
 var validFlag = true;
 var para = {};
 var currentDelId = '';
-var sessionUserId = sessionStorage.getItem('userId');
+var sessionUserId = '';
 var userManagment = function () {
     var oTable = null;
     return {
@@ -122,6 +122,16 @@ var userManagment = function () {
 }();
 
 $(document).ready(function () {
+    
+    var currentUserId = window.sessionStorage.getItem('userId');
+    if (!currentUserId) {
+        window.scroll = false;
+        $('.noLoginMask').css('display', 'block');
+        setTimeout(function(){
+            window.location = 'login_soft.html';
+        },1000)
+    }
+
     $.fn.dataTableExt.sErrMode = 'throw';
     userManagment.init();
     $("#userManagment").on("click", ".userManagmentEdit", function (e) {

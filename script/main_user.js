@@ -117,6 +117,15 @@ var userManagment = function () {
 
 $(document).ready(function () {
     $.fn.dataTableExt.sErrMode = 'throw';
+
+    var currentUserId = window.sessionStorage.getItem('userId');
+    if (!currentUserId) {
+        window.scroll = false;
+        $('.noLoginMask').css('display', 'block');
+        setTimeout(function(){
+            window.location = 'login_soft.html';
+        },1000)
+    }
     userManagment.init();
     $("#userManagment").on("click", ".userManagmentEdit", function (e) {
 

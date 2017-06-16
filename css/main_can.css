@@ -24,3 +24,31 @@
 #scheduleText {
 	height: 120px !important;
 }
+.noLoginMask {
+	display: none;
+	position: absolute;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #212121;
+	overflow-y: hidden;
+}
+.noLoginHint {
+	position: absolute;
+	z-index: 101;
+	width: 500px;
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 30px;
+	letter-spacing: 4px;
+	color: #E8DFA4;
+	font-weight: 800;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
