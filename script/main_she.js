@@ -1,7 +1,7 @@
 var validFlag = true;
 var para = {};
 var currentDelId = '';
-var sessionUserId = '';
+var sessionUserId = window.sessionStorage.getItem('userId');
 var userManagment = function () {
     var oTable = null;
     return {
